@@ -8,7 +8,7 @@ def import_and_clean(path):
     df = pd.read_csv(path)
     route_names = list(df.name.unique())
     route_names.remove(nan)
-    df.
+    # df.
     return route_names
 
 route_names = import_and_clean(path)
