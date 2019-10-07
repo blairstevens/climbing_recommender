@@ -52,3 +52,21 @@ nbrs = NearestNeighbors(n_neighbors=6, algorithm='ball_tree', n_jobs=-1)
 nbrs.fit(scal_bin)
 
 distances, indices = nbrs.kneighbors(scal_bin)
+
+# joblib.dump(nbrs, 'NMnbrs.joblib')
+# joblib.dump(distances, 'NMdist.joblib')
+# joblib.dump(indices, 'NMind.joblib')
+
+def get_index_from_name(name):
+    return unique_route_frame[unique_route_frame["route"]==name].index.tolist()[0]
+
+def return_similar_routes(query=None,id=None):
+    if query:
+        found_id = get_index_from_name(query)
+        recc_list = []
+        for id in indices[found_id][1:]:
+            i = (unique_route_frame.iloc[id]["route"])
+            recc_list.append(i)
+        return(recc_list)
+
+return_similar_routes('The Nose')
